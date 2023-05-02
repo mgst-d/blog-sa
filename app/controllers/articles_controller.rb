@@ -1,5 +1,9 @@
 # This is an ArticlesController
 class ArticlesController < ApplicationController
-  def add_index
+  def index
+    @articles = Article.all
+  end
+
+  def new
   end
 end
