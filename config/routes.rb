@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   resources :comments
   resources :posts
-  devise_for :users
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+}
 
   devise_scope :user do  
     post '/users/sign_out' => 'devise/sessions#destroy'     
