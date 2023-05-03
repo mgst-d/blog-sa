@@ -1,3 +1,9 @@
+
+<div class="btn-group" role="group" aria-label="Basic outlined example">
+  <button type="button" onclick="window.location.href = '/posts';" value="<%= @selector = 0%>" class="btn btn-outline-primary">All posts</button>
+  <button type="button" onclick="window.location.href = '/posts';" value="<%= @selector = 1%>" class="btn btn-outline-primary">Your posts</button>
+</div>
+
 <h1>Posts</h1>
 
 <div id="posts">
@@ -10,7 +16,7 @@
   
 </div>
 <div>
-  <p class= "align-self-center p-2">
+
     <%== pagy_nav(@pagy)%>
-  </p>
+
 </div>
