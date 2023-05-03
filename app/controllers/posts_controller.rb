@@ -1,21 +1,21 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :update, :edit, :destroy]
   before_action :set_post, only: %i[ show edit update destroy ]
-  #before_action :init_selector, only: [:index]
 
   # GET /posts or /posts.json
   def index
-    @selector = 0 if @selector.nil?
-    case @selector
-    when 0
-      @pagy, @posts = pagy(Post.all.order("created_at DESC"), items: 4)
-    when 1
+    @users = User.all
+    category = params[:category]
+    if category
       @pagy, @posts = pagy(Post.where(user_id: current_user.id).order("created_at DESC"), items: 4)
+    else
+      @pagy, @posts = pagy(Post.all.order("created_at DESC"), items: 4)
     end
   end
 
   # GET /posts/1 or /posts/1.json
   def show
+    @users = User.all
   end
 
   # GET /posts/new
@@ -82,10 +82,6 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:title, :description, :body, :user_id)
-    end
-
-    def init_selector
-      @selector ||= 1
+      params.require(:post).permit(:title, :description, :body, :user_id, :image)
     end
 end

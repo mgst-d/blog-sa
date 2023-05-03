@@ -1,19 +1,39 @@
 
-<div class="btn-group" role="group" aria-label="Basic outlined example">
-  <button type="button" onclick="window.location.href = '/posts';" value="<%= @selector = 0%>" class="btn btn-outline-primary">All posts</button>
-  <button type="button" onclick="window.location.href = '/posts';" value="<%= @selector = 1%>" class="btn btn-outline-primary">Your posts</button>
-</div>
+<% if user_signed_in? %>
+  <%= link_to "All /", posts_path %>
+  <%= link_to "Your posts", posts_path(:category => 'rails') %>
+<% end %>
 
 <h1>Posts</h1>
 
 <div id="posts">
   <% @posts.each do |post| %>
-    <%= render post %>
-    <p>
-      <%= link_to "Show this post", post %>
-    </p>
+    <div class="card mb-3" style="max-width: 1240px;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <% if post.image.attached? %>
+            <%= image_tag post.image, class: "img-fluid rounded-start" %>
+          <% end %>
+          
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title"><%= post.title %></h5>
+            <p class="card-text"><%= post.description %></p>
+            <p class="card-text"><%= post.body %></p>
+            <% @users.each do |user|%>
+              <% if user.id == post.user_id%>
+                <p class="card-text"><small class="text-body-secondary">Author: <%= user.username %></small></p>
+              <% end %>
+            <% end %>
+            <p>
+              <%= link_to "Show this post", post %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   <% end %>
-  
 </div>
 <div>
 

@@ -1,22 +1,19 @@
 <div id="<%= dom_id post %>">
-  <p>
-    <strong>Title:</strong>
-    <%= post.title %>
-  </p>
+<div class="card mb-3">
+  <% if post.image.attached? %>
+    <%= image_tag post.image, class: "card-img-top" %>
+  <% end %>
 
-  <p>
-    <strong>Description:</strong>
-    <%= post.description %>
-  </p>
-
-  <p>
-    <strong>Body:</strong>
-    <%= post.body %>
-  </p>
-
-  <p>
-    <strong>User:</strong>
-    <%= post.user_id %>
-  </p>
+  <div class="card-body">
+    <h5 class="card-title"><%= post.title %></h5>
+    <p class="card-text"><%= post.description %></p>
+    <p class="card-text"><%= post.body %></p>
+    <% @users.each do |user|%>
+      <% if user.id == post.user_id%>
+        <p class="card-text"><small class="text-body-secondary">Author: <%= user.username %></small></p>
+      <% end %>
+    <% end %>
+  </div>
+</div>
 
 </div>
