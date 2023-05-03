@@ -57,6 +57,9 @@ gem 'simple_form'
 # Devise is a flexible authentication solution for Rails based on Warden.
 gem 'devise'
 
+# Pagination
+gem 'pagy'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'database_cleaner'
