@@ -57,7 +57,7 @@ gem 'simple_form'
 # Devise is a flexible authentication solution for Rails based on Warden.
 gem 'devise'
 gem 'activeadmin'
-
+gem 'arctic_admin'
 # Pagination
 gem 'pagy'
 
